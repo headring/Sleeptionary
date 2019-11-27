@@ -2,7 +2,7 @@ import sqlite3
 import Adafruit_DHT
 
 # Connect database
-db_path = ""
+db_path = "./test"
 try:
     conn = sqlite3.connect(db_path)
     c = conn.cursor()
@@ -21,8 +21,8 @@ if humidity is not None and temperature is not None:
 else:
     print('Failed to get reading. Try again!')
 
-li = []
-sq = '''INSERT INTO table_name VALUES(?,?,?)'''
+li = [humidity, temperature]
+sq = '''INSERT INTO tmhd VALUES(?,?)'''
 value = tuple(li)
 rm = c.execute(sq, value)
 conn.commit()
