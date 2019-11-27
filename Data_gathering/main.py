@@ -22,7 +22,7 @@ else:
     print('Failed to get reading. Try again!')
 
 li = [humidity, temperature]
-sq = '''INSERT INTO tmhd VALUES(?,?)'''
+sq = '''INSERT INTO tmhd(TM, HD) VALUES(?,?)'''
 value = tuple(li)
 rm = c.execute(sq, value)
 conn.commit()
