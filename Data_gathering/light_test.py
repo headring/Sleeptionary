@@ -10,7 +10,7 @@ ONETIME_H_RES_MODE2 = 0x21
 ONETIME_L_RES_MODE  = 0x23
 
 while True:
-	bus.write_byte(address,A0)
+	bus.write_byte(address,1)
 	luxBytes = bus.read_i2c_block_data(address, CONT_H_RES_MODE, 2)
 	lux = int.from_bytes(luxBytes, byteorder='big')
 	print('{0} lux'.format(lux))
