@@ -18,3 +18,18 @@
   - 혹은 `old`, `_rowid_`
   - Foreign key의 reference로는 사용할 수 없다.
 - 
+
+
+
+### DHT 센서
+
+```shell
+$ git clone https://github.com/adafruit/Adafruit_Python_DHT.git
+$ cd Adafruit_Python_DHT
+$ sudo apt-get update
+$ sudo apt-get install build-essential python-dev python-openssl
+$ sudo python setup.py install
+
+출처: https://gorakgarak.tistory.com/686
+```
+
