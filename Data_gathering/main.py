@@ -16,6 +16,7 @@ sensor = Adafruit_DHT.DHT11
 pin = 4
 
 while 1:
+    # 온습도 저장
     humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
 
     if humidity is not None and temperature is not None:
@@ -28,6 +29,15 @@ while 1:
     value = tuple(li)
     rm = c.execute(sq, value)
     conn.commit()
+
+    # 조도 저장
+    # 조도 측정 코드
+    lx = 0 # 조도값
+    sq = '''INSERT INTO lux(LX) VALUES(?)'''
+    value = tuple(lx)
+    rm = c.execute(sq, value)
+    conn.commit()
+
 
     time.sleep(300)
 
