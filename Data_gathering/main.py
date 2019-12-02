@@ -30,13 +30,13 @@ while 1:
     rm = c.execute(sq, value)
     conn.commit()
 
-    # 조도 저장
-    # 조도 측정 코드
-    lx = 0 # 조도값
-    sq = '''INSERT INTO lux(LX) VALUES(?)'''
-    value = tuple(lx)
-    rm = c.execute(sq, value)
-    conn.commit()
+#    # 조도 저장
+#    # 조도 측정 코드
+#    lx = 0 # 조도값
+#    sq = '''INSERT INTO lux(LX) VALUES(?)'''
+#    value = tuple(lx)
+#    rm = c.execute(sq, value)
+#    conn.commit()
 
 
     time.sleep(300)
