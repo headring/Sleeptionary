@@ -35,6 +35,7 @@ sudo pip install colour Adafruit_AMG88xx
 python2로 사용?
 
 - 아직 5번으로 넘어가지 말기
+- 12월 2일 기준, pygame, busio가 있는 'pip3 install adafruit-blinka'를 진행한 결과 scipy가 없다고 뜸
 - 위에 것도 안되면 비슷하게 진행되는 [이쪽 코드로 가서 실행해보기](https://learn.adafruit.com/adafruit-amg8833-8x8-thermal-camera-sensor/raspberry-pi-thermal-camera)
 
 - 안되서 다른 코드로 가봄 [클릭](https://github.com/adafruit/Adafruit_CircuitPython_AMG88xx)
