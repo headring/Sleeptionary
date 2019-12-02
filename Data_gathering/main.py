@@ -24,7 +24,7 @@ while 1:
     else:
         print('Failed to get reading. Try again!')
 
-    li = [humidity, temperature]
+    li = [temperature, humidity]
     sq = '''INSERT INTO tmhd(TM, HD) VALUES(?,?)'''
     value = tuple(li)
     rm = c.execute(sq, value)
