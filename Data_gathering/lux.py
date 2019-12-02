@@ -41,7 +41,7 @@ class BH1750():
     # Device is automatically set to Power Down after measurement.
     ONE_TIME_LOW_RES_MODE = 0x23
 
-    def __init__(self, bus, addr=0x23):
+    def __init__(self, bus, addr=0x69):
         self.bus = bus
         self.addr = addr
         self.power_down()

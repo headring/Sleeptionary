@@ -1,0 +1,10 @@
+Metadata-Version: 1.2
+Name: circuitpython-stubs
+Version: 2019.11.30
+Summary: PEP 561 type stubs for CircuitPython
+Home-page: https://github.com/adafruit/circuitpython
+Author-email: circuitpython@adafruit.com
+Maintainer: CircuitPythonistas
+License: MIT
+Description: UNKNOWN
+Platform: UNKNOWN
