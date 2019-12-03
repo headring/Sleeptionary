@@ -46,6 +46,7 @@ pin = 4
 # Time iterator
 T = 0
 
+started = False
 while 1:
     # 5분 간격
     if T % 300 == 0:
@@ -56,10 +57,36 @@ while 1:
         # 조도 저장
         lx_vq = lux()
         db_insert(lx_vq[0], lx_vq[1])
+    # 1분 간격
+
     # if T % 100 == 0:
     #     # 최빈 온도값 저장
+    #     # 3분 이상 떨어진 상태로 유지되면 and !started
+    #         t = time.localtime()
+    #         starttime = '%04d-%02d-%02d %02d:%02d:%02d' % (t.tm_year, t.tm_mon, t.tm_mday, t.tm_hour, t.tm_min, t.tm_sec)
+    #         started = True
+
+    # if 스위치가 눌려지면
+    # break
 
     T += 1
     time.sleep(1)
+
+t = time.localtime()
+endtime = '%04d-%02d-%02d %02d:%02d:%02d' % (t.tm_year, t.tm_mon, t.tm_mday, t.tm_hour, t.tm_min, t.tm_sec)
+
+# tag 따기
+tag = 0
+
+# 평균 온습도, 조도 계산
+avg_TM_HD = c.execute('''SELECT avg(TM), avg(HD) FROM tmhd WHERE Timestamp BETWEEN "%s" and "%s"''' % (starttime, endtime))
+avg_LX = c.execute('''SELECT avg(LX) FROM lux WHERE Timestamp BETWEEN "%s" and "%s"''' % (starttime, endtime))
+
+# 저장
+db_insert(['%04d-%02d-%02d' % (t.tm_year, t.tm_mon, t.tm_mday), starttime, endtime, avg_TM_HD[0], avg_TM_HD[1],
+           avg_LX[0], tag], '''INSERT INTO Sleeptionary VALUES(?,?,?,?,?,?,?)''')
+
+
+
 
 conn.close()
