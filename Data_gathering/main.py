@@ -1,6 +1,8 @@
 import sqlite3
 import time
 import Adafruit_DHT
+import matplotlib as mpl
+import pylab as plb
 
 
 def db_insert(li, qr):
@@ -86,7 +88,7 @@ avg_LX = c.execute('''SELECT avg(LX) FROM lux WHERE Timestamp BETWEEN "%s" and "
 db_insert(['%04d-%02d-%02d' % (t.tm_year, t.tm_mon, t.tm_mday), starttime, endtime, avg_TM_HD[0], avg_TM_HD[1],
            avg_LX[0], tag], '''INSERT INTO Sleeptionary VALUES(?,?,?,?,?,?,?)''')
 
-
+# 그래프 그리기
 
 
 conn.close()
