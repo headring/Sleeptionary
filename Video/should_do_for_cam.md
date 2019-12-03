@@ -3,6 +3,8 @@
 - python pixels_test.py: 8X8로 각 픽셀의 온도를 보여줌
 - python thermistor_test.py: 뭐 보여주긴 함
 - python amg88xx_still.py: 현재 카메라에 보이는 순간을 캡쳐 해줌
+
+
 ==============================
 
 #### 초기 설정
