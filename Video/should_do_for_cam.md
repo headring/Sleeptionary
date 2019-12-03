@@ -1,3 +1,10 @@
+#먼저 저 폴더 위치에 들어가고 코드 실행
+##cd Adafruit_AMG88xx_python/examples
+##python thermal_cam.py
+
+
+==============================
+
 #### 초기 설정
 
 sudo raspi-config (완료)
