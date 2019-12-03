@@ -8,8 +8,20 @@ h1 {
 }
 #grid {
     display: grid;
-    grid-template-columns: 150px 1fr;
+    grid-template-columns: 850px 1fr;
 }
 body {
     margin: 0px;
+}
+#graph {
+    text-align: center;
+    background-color: beige;
+    padding: 20px;
+    vertical-align: middle;
+    height: 500px;
+}
+#temperature, #humidity {
+    text-align: center;
+    background-color: wheat;
+    height: 50%;
 }

@@ -38,7 +38,6 @@ while 1:
 #    rm = c.execute(sq, value)
 #    conn.commit()
 
-
     time.sleep(300)
 
 conn.close()
