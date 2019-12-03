@@ -17,9 +17,6 @@
 - 모든 table의 row에는 64-bit signed integer key가 있다. (`rowid`)
   - 혹은 `old`, `_rowid_`
   - Foreign key의 reference로는 사용할 수 없다.
-- 
-
-
 
 ### DHT 센서
 
