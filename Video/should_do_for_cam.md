@@ -1,3 +1,12 @@
+# 각 파일 설명(python 2환경으로 실행)
+- python thermal_cam.py: 화면 보기
+- python pixels_test.py: 8X8로 각 픽셀의 온도를 보여줌
+- python thermistor_test.py: 뭐 보여주긴 함
+- python amg88xx_still.py: 현재 카메라에 보이는 순간을 캡쳐 해줌
+
+
+---
+
 #### 초기 설정
 
 sudo raspi-config (완료)
@@ -18,12 +27,12 @@ sudo i2cdetect -y 1 (You should see a 69 on column 9) (69보임)
 
 #### Download and install packages outlined in Adafruit guide
 
-sudo apt-get install -y build-essential python-pip python-dev python-smbus git
+sudo apt-get install -y build-essential python-pip python-dev python-smbus git (완료)
 git clone https://github.com/adafruit/Adafruit_Python_GPIO....
 
 cd Adafruit_Python_GPIO
 
-sudo python setup.py install
+sudo python setup.py install (완료)
 
 여기까지도 완료
 
@@ -51,5 +60,5 @@ git clone https://github.com/adafruit/Adafruit_AMG88xx_python
 
 cd Adafruit_AMG88xx_python/examples
 
-sudo python thermal_cam.py
+python thermal_cam.py(이 코드만 진행하면 됨)
 
