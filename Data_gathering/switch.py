@@ -11,6 +11,10 @@ try:
 	while True:
 		if GPIO.input(22) == GPIO.HIGH:
 			print(22)
+		if GPIO.input(23) == GPIO.HIGH:
+			print(23)
+		if GPIO.input(24) == GPIO.HIGH:
+			print(24)
 #	 	if GPIO.input(22) != 0:
 # 			print("good!")
 #		if GPIO.input(23) != 0:
