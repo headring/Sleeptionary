@@ -18,12 +18,12 @@ sudo i2cdetect -y 1 (You should see a 69 on column 9) (69보임)
 
 #### Download and install packages outlined in Adafruit guide
 
-sudo apt-get install -y build-essential python-pip python-dev python-smbus git
+sudo apt-get install -y build-essential python-pip python-dev python-smbus git (완료)
 git clone https://github.com/adafruit/Adafruit_Python_GPIO....
 
 cd Adafruit_Python_GPIO
 
-sudo python setup.py install
+sudo python setup.py install (완료)
 
 여기까지도 완료
 
@@ -51,5 +51,5 @@ git clone https://github.com/adafruit/Adafruit_AMG88xx_python
 
 cd Adafruit_AMG88xx_python/examples
 
-sudo python thermal_cam.py
+python thermal_cam.py(이 코드만 진행하면 됨)
 
