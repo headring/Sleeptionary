@@ -1,0 +1,27 @@
+h1 {
+    text-align: center;
+    font-size: 40px;
+    border-bottom: 1px solid gray;
+    margin: 0px;
+    padding: 20px;
+
+}
+#grid {
+    display: grid;
+    grid-template-columns: 850px 1fr;
+}
+body {
+    margin: 0px;
+}
+#graph {
+    text-align: center;
+    background-color: beige;
+    padding: 20px;
+    vertical-align: middle;
+    height: 500px;
+}
+#temperature, #humidity {
+    text-align: center;
+    background-color: wheat;
+    height: 50%;
+}

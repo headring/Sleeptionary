@@ -1,0 +1,6 @@
+[submodule "Video/Adafruit_AMG88xx_python"]
+	url = https://github.com/adafruit/Adafruit_AMG88xx_python.git
+[submodule "Data_gathering/Adafruit_Python_DHT"]
+	url = https://github.com/adafruit/Adafruit_Python_DHT.git
+[submodule "Video/Adafruit_Python_GPIO"]
+	url = https://github.com/adafruit/Adafruit_Python_GPIO.git
