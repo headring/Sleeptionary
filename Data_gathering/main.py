@@ -63,6 +63,7 @@ while 1:
         # 조도 저장
         lx_vq = lux()
         db_insert(lx_vq[0], lx_vq[1])
+
     # 1분 간격
     if T % 100 == 0:
         # 최빈 온도값 저장
