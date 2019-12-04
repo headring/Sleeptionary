@@ -3,7 +3,7 @@ import RPi.GPIO as GPIO
 from time import sleep
 #Set warnings off (optional)
 GPIO.setwarnings(False)
-GPIO.setmode(GPIO.BCM)
+GPIO.setmode(GPIO.BOARD)
 #Set Button and LED pins
 Button = 23
 LED = 24
