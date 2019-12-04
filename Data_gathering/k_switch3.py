@@ -21,9 +21,6 @@ while True :
 GPIO.cleanup()
 print ("Button Press Ended")
 
-<<<<<<< HEAD
-#15, 16, 18(pin #)
-=======
-#22, 23, 24
 
->>>>>>> 631db536ff2f5e9eac5c90465284f5b929789985
+#15, 16, 18(pin #)
+
