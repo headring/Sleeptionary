@@ -2,14 +2,16 @@ import matplotlib
 from pylab import *
 
 x_data = range(0, 7)
-y_data = [1,2,3,4,5,6,7]
+y_data = [5, 1, 2, 7, 8, 4, 5]
 perf = 10
 
 # plot(x_data, y_data)
 
 title("Test")
 bar(x_data, y_data)
-yticks(y_data, ['a', 'b', 'c', 'd'])
+# yticks(sort(y_data))
+yticks([5])
+xticks(x_data, ["Mon", "Tue", "Wed", "Thr", "Fri", "Sat", "Sun"])
 
 show()
 
