@@ -3,6 +3,7 @@ import time
 import Adafruit_DHT
 import matplotlib as mpl
 import pylab as plb
+from Adafruit_AMG88xx import Adafruit_AMG88xx
 
 
 def db_insert(li, qr):
@@ -45,6 +46,9 @@ except sqlite3.OperationalError:
 sensor = Adafruit_DHT.DHT11
 pin = 4
 
+# Initialize thermal camera
+camera = Adafruit_AMG88xx()
+
 # Time iterator
 T = 0
 
@@ -60,13 +64,17 @@ while 1:
         lx_vq = lux()
         db_insert(lx_vq[0], lx_vq[1])
     # 1분 간격
-
-    # if T % 100 == 0:
-    #     # 최빈 온도값 저장
-    #     # 3분 이상 떨어진 상태로 유지되면 and !started
-    #         t = time.localtime()
-    #         starttime = '%04d-%02d-%02d %02d:%02d:%02d' % (t.tm_year, t.tm_mon, t.tm_mday, t.tm_hour, t.tm_min, t.tm_sec)
-    #         started = True
+    if T % 100 == 0:
+        # 최빈 온도값 저장
+        ts = []
+        temps = camera.readPixels()
+        temp = max(temps, key=temps.count)
+        ts.append(temp)
+        # 5분 이상 떨어진 상태로 유지되면 and !started
+        if ts[-5:] == [temp] * 5:
+            t = time.localtime()
+            starttime = '%04d-%02d-%02d %02d:%02d:%02d' % (t.tm_year, t.tm_mon, t.tm_mday, t.tm_hour, t.tm_min, t.tm_sec)
+            started = True
 
     # if 스위치가 눌려지면
     # break
