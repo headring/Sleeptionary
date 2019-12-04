@@ -9,4 +9,3 @@ while 1:
 	value = bus.read_byte(address)
 	print(value)
 	time.sleep(0.1)
-
