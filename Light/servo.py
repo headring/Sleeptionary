@@ -13,12 +13,12 @@ try:
         p.ChangeDutyCycle(1)
         print "angle : 1"
         time.sleep(1)
-        p.ChangeDutyCycle(5)
-        print "angle : 5"
+        p.ChangeDutyCycle(14)
+        print "angle : 14"
         time.sleep(1)
-        p.ChangeDutyCycle(8)
-        print "angle : 8"
-        time.sleep(1)
+        #p.ChangeDutyCycle(8)
+        #print "angle : 8"
+        #time.sleep(1)
 except KeyboardInterrupt:
     p.stop()
 GPIO.cleanup()
