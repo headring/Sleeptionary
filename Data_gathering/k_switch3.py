@@ -2,7 +2,7 @@ import RPi.GPIO as GPIO
 import time
  
 GPIO.setmode( GPIO.BOARD)
-GPIO.setup(11, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(22, GPIO.IN, pull_up_down=GPIO.PUD_UP)
  
 request_count = int(raw_input("Enter Button Press Count ->"))
 button_count = 0
@@ -20,3 +20,5 @@ while True :
  
 GPIO.cleanup()
 print ("Button Press Ended")
+
+#22, 23, 24
