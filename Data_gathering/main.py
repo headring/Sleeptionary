@@ -30,7 +30,7 @@ def lux():
     lx = 0 # 조도값
     query = '''INSERT INTO lux(LX) VALUES(?)'''
 
-    return [lx, query]
+    return [[lx], query]
 
 
 # Connect database
