@@ -3,7 +3,7 @@ import time
 import Adafruit_DHT
 
 # Connect database
-db_path = "./test"
+db_path = "./test.db"
 try:
     conn = sqlite3.connect(db_path)
     c = conn.cursor()
