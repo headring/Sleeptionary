@@ -8,3 +8,4 @@ GPIO.setup(soundpin,GPIO.IN)
 while True:
 	if GPIO.input(soundpin) == 1 :
 		print "detect"
+		time.sleep(0.1)
