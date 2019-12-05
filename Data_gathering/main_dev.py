@@ -59,7 +59,7 @@ GPIO.setup(16, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 # Time iterator
 T = 0
 
-started = False  # Sleep started
+started = True  # Sleep started
 ts = []  # Save temperatures
 got_avg = False  # if got average temperature
 while 1:
@@ -82,7 +82,7 @@ while 1:
     GPIO.cleanup()
 
     # 5분 간격
-    if T % 300 == 0:
+    if T % 10 == 0:
         # 온습도 저장
         tmhd_vq = tmhd()
         db_insert(tmhd_vq[0], tmhd_vq[1])
@@ -92,7 +92,7 @@ while 1:
         db_insert(lx_vq[0], lx_vq[1])
 
     # 1분 간격
-    if T % 100 == 0 and not started:
+    if T % 2 == 0 and not started:
         temps = camera.readPixels()
         temp = max(temps)
         ts.append(temp)
@@ -106,7 +106,7 @@ while 1:
         if not started:
             i = 0
             for f in ts[-5:]:
-                if ts[0] - 1.7 <= f <= ts[0] - 1.3:  # 오차 고려 (0.2)
+                if abs(ts[0] - f) < 1:
                     i += 1
                     continue
                 else:
