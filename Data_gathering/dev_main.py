@@ -3,7 +3,7 @@ import time
 import Adafruit_DHT
 import matplotlib as mpl
 import pylab as plb
-import Adafruit_AMG88xx
+from Adafruit_AMG88xx import Adafruit_AMG88xx
 import RPi.GPIO as GPIO
 
 
@@ -53,33 +53,34 @@ camera = Adafruit_AMG88xx()
 # Initialize button
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(15, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-GPIO.setup(18, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-GPIO.setup(16, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+# GPIO.setup(18, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+# GPIO.setup(16, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 # Time iterator
 T = 0
 
 started = True  # Sleep started
+t = time.localtime()
+starttime = '%04d-%02d-%02d %02d:%02d:%02d' % (t.tm_year, t.tm_mon, t.tm_mday, t.tm_hour, t.tm_min, t.tm_sec)
 ts = []  # Save temperatures
 got_avg = False  # if got average temperature
 while 1:
     # Check switches
     b1 = GPIO.input(15)
-    b2 = GPIO.input(18)
-    b3 = GPIO.input(16)
+    # b2 = GPIO.input(18)
+    # b3 = GPIO.input(16)
     if not b1:
         tag = 1
-        print("Good sleep.")
+        print("Finish sleeping")
         break
-    elif not b2:
-        tag = 0
-        print("Slept soso.")
-        break
-    elif not b3:
-        tag = -1
-        print("Bad sleep.")
-        break
-    GPIO.cleanup()
+    # elif not b2:
+    #     tag = 0
+    #     print("Slept soso.")
+    #     break
+    # elif not b3:
+    #     tag = -1
+    #     print("Bad sleep.")
+    #     break
 
     # 5분 간격
     if T % 10 == 0:
@@ -123,14 +124,20 @@ t = time.localtime()
 endtime = '%04d-%02d-%02d %02d:%02d:%02d' % (t.tm_year, t.tm_mon, t.tm_mday, t.tm_hour, t.tm_min, t.tm_sec)
 
 # 평균 온습도, 조도 계산
-avg_TM_HD = c.execute('''SELECT avg(TM), avg(HD) FROM tmhd WHERE Timestamp BETWEEN "%s" and "%s"''' % (starttime, endtime))
-avg_LX = c.execute('''SELECT avg(LX) FROM lux WHERE Timestamp BETWEEN "%s" and "%s"''' % (starttime, endtime))
+avg_TM_HD = c.execute('''SELECT avg(TM), avg(HD) FROM tmhd WHERE Timestamp BETWEEN "%s" and "%s"''' % (starttime, endtime)).fetchone()
+print("avg_TM_HD : ")
+print(avg_TM_HD)
+avg_LX = c.execute('''SELECT avg(LX) FROM lux WHERE Timestamp BETWEEN "%s" and "%s"''' % (starttime, endtime)).fetchone()
+print("avg_LX : ")
+print(avg_LX)
 
 # 저장
-db_insert(['%04d-%02d-%02d' % (t.tm_year, t.tm_mon, t.tm_mday), starttime, endtime, avg_TM_HD[0], avg_TM_HD[1],
+today_date = '%04d-%02d-%02d' % (t.tm_year, t.tm_mon, t.tm_mday - 1)
+db_insert([today_date, starttime, endtime, avg_TM_HD[0], avg_TM_HD[1],
            avg_LX[0], tag], '''INSERT INTO Sleeptionary VALUES(?,?,?,?,?,?,?)''')
 
 # TODO 그래프 그리기
 
 
 conn.close()
+GPIO.cleanup()
