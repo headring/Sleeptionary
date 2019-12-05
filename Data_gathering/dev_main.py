@@ -83,7 +83,7 @@ while 1:
     #     break
 
     # 5분 간격
-    if T % 2 == 0:
+    if T % 5 == 0:
         # 온습도 저장
         tmhd_vq = tmhd()
         db_insert(tmhd_vq[0], tmhd_vq[1])
