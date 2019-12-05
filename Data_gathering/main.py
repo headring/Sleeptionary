@@ -26,11 +26,11 @@ def tmhd():
 
 
 def lux():
-    # 조도 측정 코드
+    # TODO 조도 측정 코드
     lx = 0 # 조도값
     query = '''INSERT INTO lux(LX) VALUES(?)'''
 
-    return [lx, query]
+    return [[lx], query]
 
 
 # Connect database
@@ -66,18 +66,20 @@ while 1:
 
     # 1분 간격
     if T % 100 == 0:
-        # 최빈 온도값 저장
+        # TODO 기준 온도 저장
+        # 최대 온도값 저장
         ts = []
         temps = camera.readPixels()
-        temp = max(temps, key=temps.count)
+        temp = max(temps)
         ts.append(temp)
         # 5분 이상 떨어진 상태로 유지되면 and !started
+        # TODO 오차 고려
         if ts[-5:] == [temp] * 5:
             t = time.localtime()
             starttime = '%04d-%02d-%02d %02d:%02d:%02d' % (t.tm_year, t.tm_mon, t.tm_mday, t.tm_hour, t.tm_min, t.tm_sec)
             started = True
 
-    # if 스위치가 눌려지면
+    # TODO if 스위치가 눌려지면 tag 저장
     # break
 
     T += 1
@@ -86,7 +88,7 @@ while 1:
 t = time.localtime()
 endtime = '%04d-%02d-%02d %02d:%02d:%02d' % (t.tm_year, t.tm_mon, t.tm_mday, t.tm_hour, t.tm_min, t.tm_sec)
 
-# tag 따기
+# TODO tag 따기
 tag = 0
 
 # 평균 온습도, 조도 계산
@@ -97,7 +99,7 @@ avg_LX = c.execute('''SELECT avg(LX) FROM lux WHERE Timestamp BETWEEN "%s" and "
 db_insert(['%04d-%02d-%02d' % (t.tm_year, t.tm_mon, t.tm_mday), starttime, endtime, avg_TM_HD[0], avg_TM_HD[1],
            avg_LX[0], tag], '''INSERT INTO Sleeptionary VALUES(?,?,?,?,?,?,?)''')
 
-# 그래프 그리기
+# TODO 그래프 그리기
 
 
 conn.close()
