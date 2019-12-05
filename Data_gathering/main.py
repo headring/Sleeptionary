@@ -3,7 +3,7 @@ import time
 import Adafruit_DHT
 import matplotlib as mpl
 import pylab as plb
-import Adafruit_AMG88xx
+from Adafruit_AMG88xx import Adafruit_AMG88xx
 import RPi.GPIO as GPIO
 
 

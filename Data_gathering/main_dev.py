@@ -3,7 +3,7 @@ import time
 import Adafruit_DHT
 import matplotlib as mpl
 import pylab as plb
-import Adafruit_AMG88xx
+from Adafruit_AMG88xx import Adafruit_AMG88xx
 import RPi.GPIO as GPIO
 
 
@@ -53,8 +53,8 @@ camera = Adafruit_AMG88xx()
 # Initialize button
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(15, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-GPIO.setup(18, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-GPIO.setup(16, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+# GPIO.setup(18, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+# GPIO.setup(16, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 # Time iterator
 T = 0
@@ -65,20 +65,20 @@ got_avg = False  # if got average temperature
 while 1:
     # Check switches
     b1 = GPIO.input(15)
-    b2 = GPIO.input(18)
-    b3 = GPIO.input(16)
+    # b2 = GPIO.input(18)
+    # b3 = GPIO.input(16)
     if not b1:
         tag = 1
         print("Good sleep.")
         break
-    elif not b2:
-        tag = 0
-        print("Slept soso.")
-        break
-    elif not b3:
-        tag = -1
-        print("Bad sleep.")
-        break
+    # elif not b2:
+    #     tag = 0
+    #     print("Slept soso.")
+    #     break
+    # elif not b3:
+    #     tag = -1
+    #     print("Bad sleep.")
+    #     break
     GPIO.cleanup()
 
     # 5분 간격
