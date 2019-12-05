@@ -2,15 +2,6 @@ import RPi.GPIO as GPIO
 
 import time
 
-__author__ = 'Gus (Adapted from Adafruit)'
-__license__ = "GPL"
-__maintainer__ = "pimylifeup.com"
-
-GPIO.setmode(GPIO.BOARD)
-
-# define the pin that goes to the circuit
-pin_to_circuit = 8
-
 
 def rc_time(pin_to_circuit):
     count = 0
@@ -30,12 +21,15 @@ def rc_time(pin_to_circuit):
     return count
 
 
-# Catch when script is interrupted, cleanup correctly
-try:
-    # Main loop
-    while True:
-        print(rc_time(pin_to_circuit))
-except KeyboardInterrupt:
-    pass
-finally:
-    GPIO.cleanup()
+__author__ = 'Gus (Adapted from Adafruit)'
+__license__ = "GPL"
+__maintainer__ = "pimylifeup.com"
+
+GPIO.setmode(GPIO.BOARD)
+
+# define the pin that goes to the circuit
+pin_to_circuit = 8
+
+print(rc_time(pin_to_circuit))
+
+GPIO.cleanup()
