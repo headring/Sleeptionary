@@ -22,7 +22,7 @@ GPIO.setmode(GPIO.BOARD)
 
 #define the pin that goes to the circuit
 
-pin_to_circuit = 7
+pin_to_circuit = 8
 
 
 
