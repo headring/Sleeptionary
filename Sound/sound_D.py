@@ -11,5 +11,5 @@ try:
 		if GPIO.input(soundpin)==CHECK_ON:
 			print "detect"
 			time.sleep(1)
-	finally:
-		GPIO.cleanup()
+		finally:
+			GPIO.cleanup()
