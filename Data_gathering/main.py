@@ -3,7 +3,8 @@ import time
 import Adafruit_DHT
 import matplotlib as mpl
 import pylab as plb
-from Adafruit_AMG88xx import Adafruit_AMG88xx
+import Adafruit_AMG88xx
+import RPi.GPIO as GPIO
 
 
 def db_insert(li, qr):
@@ -49,11 +50,34 @@ pin = 4
 # Initialize thermal camera
 camera = Adafruit_AMG88xx()
 
+# Initialize button
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(15, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(18, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(16, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+
 # Time iterator
 T = 0
 
 started = False
 while 1:
+    # TODO if 스위치가 눌려지면 tag 저장
+    b1 = GPIO.input(15)
+    b2 = GPIO.input(18)
+    b3 = GPIO.input(16)
+    if not b1:
+        tag = 1
+        print("Good sleep.")
+        break
+    elif not b2:
+        tag = 0
+        print("Slept soso.")
+        break
+    elif not b3:
+        tag = -1
+        print("Bad sleep.")
+        break
+
     # 5분 간격
     if T % 300 == 0:
         # 온습도 저장
@@ -73,23 +97,17 @@ while 1:
         temp = max(temps)
         ts.append(temp)
         # 5분 이상 떨어진 상태로 유지되면 and !started
-        # TODO 오차 고려
+        # TODO 오차 고려 (0.2)
         if ts[-5:] == [temp] * 5:
             t = time.localtime()
             starttime = '%04d-%02d-%02d %02d:%02d:%02d' % (t.tm_year, t.tm_mon, t.tm_mday, t.tm_hour, t.tm_min, t.tm_sec)
             started = True
-
-    # TODO if 스위치가 눌려지면 tag 저장
-    # break
 
     T += 1
     time.sleep(1)
 
 t = time.localtime()
 endtime = '%04d-%02d-%02d %02d:%02d:%02d' % (t.tm_year, t.tm_mon, t.tm_mday, t.tm_hour, t.tm_min, t.tm_sec)
-
-# TODO tag 따기
-tag = 0
 
 # 평균 온습도, 조도 계산
 avg_TM_HD = c.execute('''SELECT avg(TM), avg(HD) FROM tmhd WHERE Timestamp BETWEEN "%s" and "%s"''' % (starttime, endtime))
