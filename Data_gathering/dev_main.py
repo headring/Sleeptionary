@@ -79,7 +79,6 @@ while 1:
     #     tag = -1
     #     print("Bad sleep.")
     #     break
-    GPIO.cleanup()
 
     # 5분 간격
     if T % 10 == 0:
@@ -134,3 +133,4 @@ db_insert(['%04d-%02d-%02d' % (t.tm_year, t.tm_mon, t.tm_mday), starttime, endti
 
 
 conn.close()
+GPIO.cleanup()
