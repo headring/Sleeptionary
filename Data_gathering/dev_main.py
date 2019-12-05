@@ -125,10 +125,13 @@ endtime = '%04d-%02d-%02d %02d:%02d:%02d' % (t.tm_year, t.tm_mon, t.tm_mday, t.t
 
 # 평균 온습도, 조도 계산
 avg_TM_HD = c.execute('''SELECT avg(TM), avg(HD) FROM tmhd WHERE Timestamp BETWEEN "%s" and "%s"''' % (starttime, endtime))
+print("avg_TM_HD : " + avg_TM_HD)
 avg_LX = c.execute('''SELECT avg(LX) FROM lux WHERE Timestamp BETWEEN "%s" and "%s"''' % (starttime, endtime))
+print("avg_LX : " + avg_LX)
 
 # 저장
-db_insert(['%04d-%02d-%02d' % (t.tm_year, t.tm_mon, t.tm_mday), starttime, endtime, avg_TM_HD[0], avg_TM_HD[1],
+today_date = '%04d-%02d-%02d' % (t.tm_year, t.tm_mon, t.tm_mday - 1)
+db_insert([today_date, starttime, endtime, avg_TM_HD[0], avg_TM_HD[1],
            avg_LX[0], tag], '''INSERT INTO Sleeptionary VALUES(?,?,?,?,?,?,?)''')
 
 # TODO 그래프 그리기
