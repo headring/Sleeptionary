@@ -10,12 +10,13 @@ p.start(0)
 cnt = 0
 
 file = open("light_info.txt", mode='r')
+file_line = file.readlines()
 light_thresh = 200
 
 p.ChangeDutyCycle(0)
 
 try:
-    for l in file.readlines():
+    for l in file_line:
         if int(l) <= light_thresh:
             p.ChangeDutyCycle(14)
             time.sleep(1)
