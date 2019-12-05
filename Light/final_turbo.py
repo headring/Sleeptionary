@@ -9,7 +9,7 @@ p = GPIO.PWM(pin, 50)
 p.start(0)
 cnt = 0
 
-file = open(light_info.txt, mode='r')
+file = open("light_info.txt", mode='r')
 light_thresh = 200
 
 p.ChangeDutyCycle(0)
