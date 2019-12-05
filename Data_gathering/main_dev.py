@@ -69,7 +69,7 @@ while 1:
     # b3 = GPIO.input(16)
     if not b1:
         tag = 1
-        print("Good sleep.")
+        print("Finish sleeping")
         break
     # elif not b2:
     #     tag = 0
