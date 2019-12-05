@@ -1,12 +1,15 @@
 import RPi.GPIO as GPIO
-from time import sleep
+import time
 
 GPIO.setmode(GPIO.BOARD)
 soundpin = 12
 GPIO.setup(soundpin,GPIO.IN)
+CHECK_ON=1
 
-if __name__=="__main__":
-	while(True):
-		soundlevel = GPIO.input(soundpin)
-		print "soundlevel",soundlevel
-		sleep(1)
+try:
+	while True:
+		if GPIO.input(soundpin)==CHECK_ON:
+			print "detect"
+			time.sleep(1)
+	finally:
+		GPIO.cleanup()
