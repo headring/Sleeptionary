@@ -60,6 +60,8 @@ GPIO.setup(15, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 T = 0
 
 started = True  # Sleep started
+t = time.localtime()
+starttime = '%04d-%02d-%02d %02d:%02d:%02d' % (t.tm_year, t.tm_mon, t.tm_mday, t.tm_hour, t.tm_min, t.tm_sec)
 ts = []  # Save temperatures
 got_avg = False  # if got average temperature
 while 1:
