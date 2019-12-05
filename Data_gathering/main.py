@@ -28,7 +28,7 @@ def tmhd():
 
 def lux():
     # TODO 조도 측정 코드
-    lx = 0 # 조도값
+    lx = 0  # 조도값
     query = '''INSERT INTO lux(LX) VALUES(?)'''
 
     return [[lx], query]
@@ -59,9 +59,11 @@ GPIO.setup(16, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 # Time iterator
 T = 0
 
-started = False
+started = False  # Sleep started
+ts = []  # Save temperatures
+got_avg = False  # if got average temperature
 while 1:
-    # TODO if 스위치가 눌려지면 tag 저장
+    # Check switches
     b1 = GPIO.input(15)
     b2 = GPIO.input(18)
     b3 = GPIO.input(16)
@@ -77,6 +79,7 @@ while 1:
         tag = -1
         print("Bad sleep.")
         break
+    GPIO.cleanup()
 
     # 5분 간격
     if T % 300 == 0:
@@ -89,19 +92,29 @@ while 1:
         db_insert(lx_vq[0], lx_vq[1])
 
     # 1분 간격
-    if T % 100 == 0:
-        # TODO 기준 온도 저장
-        # 최대 온도값 저장
-        ts = []
+    if T % 100 == 0 and not started:
         temps = camera.readPixels()
         temp = max(temps)
         ts.append(temp)
-        # 5분 이상 떨어진 상태로 유지되면 and !started
-        # TODO 오차 고려 (0.2)
-        if ts[-5:] == [temp] * 5:
-            t = time.localtime()
-            starttime = '%04d-%02d-%02d %02d:%02d:%02d' % (t.tm_year, t.tm_mon, t.tm_mday, t.tm_hour, t.tm_min, t.tm_sec)
-            started = True
+        # 기준 온도 저장 (ts[0])
+        if len(ts) == 3 and not got_avg:
+            avg_tm = (ts[0] + ts[1] + ts[2]) / 3
+            ts = []
+            ts.append(avg_tm)
+            got_avg = True
+        # 5분 동인 기준 온도보다 1.5도 떨어진 상태로 유지되면 and !started
+        if not started:
+            i = 0
+            for f in ts[-5:]:
+                if ts[0] - 1.7 <= f <= ts[0] - 1.3:  # 오차 고려 (0.2)
+                    i += 1
+                    continue
+                else:
+                    break
+            if i == 5:
+                t = time.localtime()
+                starttime = '%04d-%02d-%02d %02d:%02d:%02d' % (t.tm_year, t.tm_mon, t.tm_mday, t.tm_hour, t.tm_min, t.tm_sec)
+                started = True
 
     T += 1
     time.sleep(1)
