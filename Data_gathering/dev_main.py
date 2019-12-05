@@ -114,7 +114,8 @@ while 1:
                     break
             if i == 5:
                 t = time.localtime()
-                starttime = '%04d-%02d-%02d %02d:%02d:%02d' % (t.tm_year, t.tm_mon, t.tm_mday, t.tm_hour, t.tm_min, t.tm_sec)
+                starttime = '%04d-%02d-%02d %02d:%02d:%02d'\
+                            % (t.tm_year, t.tm_mon, t.tm_mday, t.tm_hour, t.tm_min, t.tm_sec)
                 started = True
 
     T += 1
@@ -124,10 +125,12 @@ t = time.localtime()
 endtime = '%04d-%02d-%02d %02d:%02d:%02d' % (t.tm_year, t.tm_mon, t.tm_mday, t.tm_hour, t.tm_min, t.tm_sec)
 
 # 평균 온습도, 조도 계산
-avg_TM_HD = c.execute('''SELECT avg(TM), avg(HD) FROM tmhd WHERE Timestamp BETWEEN "%s" and "%s"''' % (starttime, endtime)).fetchone()
+avg_TM_HD = c.execute('''SELECT avg(TM), avg(HD) FROM tmhd WHERE Timestamp BETWEEN "%s" and "%s"'''\
+                      % (starttime, endtime)).fetchone()
 print("avg_TM_HD : ")
 print(avg_TM_HD)
-avg_LX = c.execute('''SELECT avg(LX) FROM lux WHERE Timestamp BETWEEN "%s" and "%s"''' % (starttime, endtime)).fetchone()
+avg_LX = c.execute('''SELECT avg(LX) FROM lux WHERE Timestamp BETWEEN "%s" and "%s"'''\
+                   % (starttime, endtime)).fetchone()
 print("avg_LX : ")
 print(avg_LX)
 
