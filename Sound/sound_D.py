@@ -9,4 +9,4 @@ if __name__=="__main__":
 	while(True):
 		soundlevel = GPIO.input(soundpin)
 		print "soundlevel",soundlevel
-		sleep(0.005)
+		sleep(1)
