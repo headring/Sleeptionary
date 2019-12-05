@@ -21,15 +21,13 @@ def rc_time(pin_to_circuit):
     return count
 
 
-__author__ = 'Gus (Adapted from Adafruit)'
-__license__ = "GPL"
-__maintainer__ = "pimylifeup.com"
-
 GPIO.setmode(GPIO.BOARD)
 
 # define the pin that goes to the circuit
 pin_to_circuit = 8
 
-print(rc_time(pin_to_circuit))
+while 1:
+    print(rc_time(pin_to_circuit))
+    time.sleep(1)
 
 GPIO.cleanup()
