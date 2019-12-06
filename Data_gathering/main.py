@@ -127,8 +127,8 @@ avg_TM_HD = c.execute('''SELECT avg(TM), avg(HD) FROM tmhd WHERE Timestamp BETWE
 avg_LX = c.execute('''SELECT avg(LX) FROM lux WHERE Timestamp BETWEEN "%s" and "%s"''' % (starttime, endtime)).fetchone()
 
 # 저장
-today_date = '%04d-%02d-%02d' % (t.tm_year, t.tm_mon, t.tm_mday - 1)
-db_insert([today_date, starttime, endtime, avg_TM_HD[0], avg_TM_HD[1],
+date = '%04d-%02d-%02d' % (t.tm_year, t.tm_mon, time.localtime(time.time() - 86400).tm_mday)
+db_insert([date, starttime, endtime, avg_TM_HD[0], avg_TM_HD[1],
            avg_LX[0], tag], '''INSERT INTO Sleeptionary VALUES(?,?,?,?,?,?,?)''')
 
 # TODO 그래프 그리기
