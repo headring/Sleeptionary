@@ -166,7 +166,7 @@ for i in range(7):
 plt.bar(range(0, 7), y_data)
 plt.title("Last 7 days (h)")
 plt.xticks(range(0, 7), xtick)
-plt.yticks([1/360, 1/120], ["10초", "30초"])
+plt.yticks([1/360, 1/120], ["10sec", "30sec"])
 plt.savefig("../Web/images/overview.png")
 plt.show()
 plt.close()
