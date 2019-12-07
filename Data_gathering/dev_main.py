@@ -175,7 +175,7 @@ plt.close()
 conn.close()
 GPIO.cleanup()
 
-# TODO Git push
-subprocess.call("git add %s" % db_path + ' ' + "../Web/images/overview.png")
+# Git push
+subprocess.call("git add %s" % db_path + ' ' + "../Web/images/overview.png", shell=True)
 subprocess.call("git commit -m 'Update DB, images'")
 subprocess.call("git push")
