@@ -5,6 +5,7 @@ from matplotlib import pyplot as plt
 from pylab import *
 from Adafruit_AMG88xx import Adafruit_AMG88xx
 import RPi.GPIO as GPIO
+import subprocess
 
 
 def db_insert(li, qr):
@@ -175,3 +176,6 @@ conn.close()
 GPIO.cleanup()
 
 # TODO Git push
+subprocess.call("git add %s" % db_path + ' ' + "../Web/images/overview.png")
+subprocess.call("git commit -m 'Update DB, images'")
+subprocess.call("git push")
