@@ -134,7 +134,7 @@ date = '%04d-%02d-%02d' % (t.tm_year, t.tm_mon, time.localtime(time.time() - 864
 db_insert([date, starttime, endtime, avg_TM_HD[0], avg_TM_HD[1],
            avg_LX[0], tag], '''INSERT INTO Sleeptionary VALUES(?,?,?,?,?,?,?)''')
 
-# TODO 그래프 그리기
+# 그래프 그리기
 y_data = []
 wday = {0: 'Mon', 1: 'Tue', 2: 'Wed', 3: 'Thr', 4: 'Fri', 5: 'Sat', 6: 'Sun'}
 xtick = []
