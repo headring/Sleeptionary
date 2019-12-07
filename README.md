@@ -4,6 +4,7 @@
 
 ### INFO :
 > **PLEASE BE NOTIFY THAT THIS PROJECT WAS DONE FOR TEAM_HW AND IT IS ONLY PROTOTYPE**
+> **IF ANYONELSE OTHER THAN KOREA, TRANSLATE USING GOOGLE**
 - Team_project STSBS at SoongSill Univ 19-2nd semester (2019년 2학기 숭실대 의생명시스템특론 팀프로젝트)
 - USED TOOLS AND LANGUAGE: Laspberry Pi 3 & Python
 - IDEA: To Improve Sleeping envriornment and habit (아이디어: 수면 개선)
