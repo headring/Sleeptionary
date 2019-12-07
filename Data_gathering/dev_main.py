@@ -164,7 +164,7 @@ for i in range(7):
         else:
             y_data.append(0)
 
-plt.bar(range(0, 7), y_data, color = 'r')
+plt.bar(range(0, 7), y_data, color='r')
 plt.title("Last 7 days (h)")
 plt.xticks(range(0, 7), xtick)
 plt.yticks([1/360, 1/120], ["10sec", "30sec"])
@@ -177,5 +177,5 @@ GPIO.cleanup()
 
 # Git push
 subprocess.call("git add %s" % db_path + ' ' + "../Web/images/overview.png", shell=True)
-subprocess.call("git commit -m 'Update DB, images'")
-subprocess.call("git push")
+subprocess.call("git commit -m 'Update DB, images'", shell=True)
+subprocess.call("git push", shell=True)
