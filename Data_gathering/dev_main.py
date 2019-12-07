@@ -57,8 +57,8 @@ print("Thermal camera initialized.")
 # Initialize button
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(15, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-# GPIO.setup(18, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-# GPIO.setup(16, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(18, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(16, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 print("Buttons initialized.")
 
 # Standard time
@@ -73,20 +73,20 @@ while 1:
 
     # Check switches
     b1 = GPIO.input(15)
-    # b2 = GPIO.input(18)
-    # b3 = GPIO.input(16)
+    b2 = GPIO.input(18)
+    b3 = GPIO.input(16)
     if not b1:
         tag = 1
         print("Finish sleeping")
         break
-    # elif not b2:
-    #     tag = 0
-    #     print("Slept soso.")
-    #     break
-    # elif not b3:
-    #     tag = -1
-    #     print("Bad sleep.")
-    #     break
+    elif not b2:
+        tag = 0
+        print("Slept soso.")
+        break
+    elif not b3:
+        tag = -1
+        print("Bad sleep.")
+        break
 
     # 5초 간격
     if int(standard_time - t) % 5 == 0:
