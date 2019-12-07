@@ -11,13 +11,14 @@ def db_insert(li, qr):
     value = tuple(li)
     rm = c.execute(qr, value)
     conn.commit()
+    print("Data inserted.")
 
 
 def tmhd():
     humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
 
     if humidity is not None and temperature is not None:
-        print("Temp={0:0.1f}'C  Humidity={1:0.1f}%".format(temperature, humidity))
+        print("Temp = %.1f'C    Humidity = %.1f%%" % (temperature, humidity))
     else:
         print('Failed to get reading. Try again!')
 
@@ -39,25 +40,28 @@ db_path = "./test.db"
 try:
     conn = sqlite3.connect(db_path)
     c = conn.cursor()
-    # c.execute("쿼리문")
+    print("DB connected.")
 except sqlite3.OperationalError:
     print("There is no database in path.")
 
 # Initialize DHT sensor
 sensor = Adafruit_DHT.DHT11
 pin = 4
+print("Thermometer initialized.")
 
 # Initialize thermal camera
 camera = Adafruit_AMG88xx()
+print("Thermal camera initialized.")
 
 # Initialize button
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(15, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 # GPIO.setup(18, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 # GPIO.setup(16, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+print("Buttons initialized.")
 
-# Time iterator
-T = 0
+# Standard time
+standard_time = time.time()
 
 started = True  # Sleep started
 t = time.localtime()
@@ -82,8 +86,8 @@ while 1:
     #     print("Bad sleep.")
     #     break
 
-    # 5분 간격
-    if T % 5 == 0:
+    # 5초 간격
+    if int(standard_time - t) % 5 == 0:
         # 온습도 저장
         tmhd_vq = tmhd()
         db_insert(tmhd_vq[0], tmhd_vq[1])
@@ -92,8 +96,8 @@ while 1:
         lx_vq = lux()
         db_insert(lx_vq[0], lx_vq[1])
 
-    # 1분 간격
-    if T % 2 == 0 and not started:
+    # 2초 간격
+    if int(standard_time - t) % 2 == 0:
         temps = camera.readPixels()
         temp = max(temps)
         ts.append(temp)
@@ -117,9 +121,6 @@ while 1:
                 starttime = '%04d-%02d-%02d %02d:%02d:%02d'\
                             % (t.tm_year, t.tm_mon, t.tm_mday, t.tm_hour, t.tm_min, t.tm_sec)
                 started = True
-
-    T += 1
-    time.sleep(1)
 
 t = time.localtime()
 endtime = '%04d-%02d-%02d %02d:%02d:%02d' % (t.tm_year, t.tm_mon, t.tm_mday, t.tm_hour, t.tm_min, t.tm_sec)
