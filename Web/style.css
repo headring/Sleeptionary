@@ -15,7 +15,7 @@ body {
 }
 #graph {
     text-align: center;
-    background-color: beige;
+    /* background-color: beige; */
     padding: 20px;
     vertical-align: middle;
     height: 500px;
