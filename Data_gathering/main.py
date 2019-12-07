@@ -1,8 +1,8 @@
 import sqlite3
 import time
 import Adafruit_DHT
-import matplotlib as mpl
-import pylab as plb
+from matplotlib import pyplot as plt
+from pylab import *
 from Adafruit_AMG88xx import Adafruit_AMG88xx
 import RPi.GPIO as GPIO
 
@@ -11,13 +11,14 @@ def db_insert(li, qr):
     value = tuple(li)
     rm = c.execute(qr, value)
     conn.commit()
+    print("Data inserted.")
 
 
 def tmhd():
     humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
 
     if humidity is not None and temperature is not None:
-        print("Temp={0:0.1f}'C  Humidity={1:0.1f}%".format(temperature, humidity))
+        print("Temp = %.1f'C    Humidity = %.1f%%" % (temperature, humidity))
     else:
         print('Failed to get reading. Try again!')
 
@@ -39,30 +40,35 @@ db_path = "./test.db"
 try:
     conn = sqlite3.connect(db_path)
     c = conn.cursor()
-    # c.execute("쿼리문")
+    print("DB connected.")
 except sqlite3.OperationalError:
     print("There is no database in path.")
 
 # Initialize DHT sensor
 sensor = Adafruit_DHT.DHT11
 pin = 4
+print("Thermometer initialized.")
 
 # Initialize thermal camera
 camera = Adafruit_AMG88xx()
+print("Thermal camera initialized.")
 
 # Initialize button
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(15, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(18, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(16, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+print("Buttons initialized.")
 
-# Time iterator
-T = 0
+# Standard time
+standard_time = time.time()
 
 started = False  # Sleep started
 ts = []  # Save temperatures
 got_avg = False  # if got average temperature
 while 1:
+    t = time.time()
+
     # Check switches
     b1 = GPIO.input(15)
     b2 = GPIO.input(18)
@@ -82,7 +88,7 @@ while 1:
     GPIO.cleanup()
 
     # 5분 간격
-    if T % 300 == 0:
+    if int(standard_time - t) % 300 == 0:
         # 온습도 저장
         tmhd_vq = tmhd()
         db_insert(tmhd_vq[0], tmhd_vq[1])
@@ -92,7 +98,7 @@ while 1:
         db_insert(lx_vq[0], lx_vq[1])
 
     # 1분 간격
-    if T % 100 == 0 and not started:
+    if int(standard_time - t) % 60 == 0 and not started:
         temps = camera.readPixels()
         temp = max(temps)
         ts.append(temp)
@@ -116,9 +122,6 @@ while 1:
                 starttime = '%04d-%02d-%02d %02d:%02d:%02d' % (t.tm_year, t.tm_mon, t.tm_mday, t.tm_hour, t.tm_min, t.tm_sec)
                 started = True
 
-    T += 1
-    time.sleep(1)
-
 t = time.localtime()
 endtime = '%04d-%02d-%02d %02d:%02d:%02d' % (t.tm_year, t.tm_mon, t.tm_mday, t.tm_hour, t.tm_min, t.tm_sec)
 
@@ -132,7 +135,36 @@ db_insert([date, starttime, endtime, avg_TM_HD[0], avg_TM_HD[1],
            avg_LX[0], tag], '''INSERT INTO Sleeptionary VALUES(?,?,?,?,?,?,?)''')
 
 # TODO 그래프 그리기
+y_data = []
+wday = {0: 'Mon', 1: 'Tue', 2: 'Wed', 3: 'Thr', 4: 'Fri', 5: 'Sat', 6: 'Sun'}
+xtick = []
 
+sleep_times = []
+c2 = c.execute('''SELECT Date, (julianday(end)-julianday(start))*24 FROM Sleeptionary ORDER BY Date DESC LIMIT 7''')
+for s in c2:
+    sleep_times.append(list(s))
+
+sleep_times_index = len(sleep_times) - 1
+for i in range(7):
+    # x축 라벨 만들기 (최근 7일의 날짜와 요일)
+    t = time.localtime(time.time() - 86400 * (7 - i))
+    xtick.append("%s\n%s" % ('%02d/%02d' % (t.tm_mon, t.tm_mday), wday[t.tm_wday]))
+
+    # y축에 들어갈 수면 시간
+    if not sleep_times_index < 0:
+        if sleep_times[sleep_times_index][0] == "%04d-%02d-%02d" % (t.tm_year, t.tm_mon, t.tm_mday):
+            y_data.append(float(sleep_times[sleep_times_index][1]))
+            sleep_times_index -= 1
+        else:
+            y_data.append(0)
+
+plt.bar(range(0, 7), y_data)
+plt.title("Last 7 days (h)")
+plt.xticks(range(0, 7), xtick)
+plt.yticks(range(1, 11))
+plt.savefig("../Web/images/overview.png")
+plt.show()
+plt.close()
 
 conn.close()
 GPIO.cleanup()
