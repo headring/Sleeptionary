@@ -163,7 +163,7 @@ for i in range(7):
         else:
             y_data.append(0)
 
-plt.bar(range(0, 7), y_data, 'r')
+plt.bar(range(0, 7), y_data, color = 'r')
 plt.title("Last 7 days (h)")
 plt.xticks(range(0, 7), xtick)
 plt.yticks([1/360, 1/120], ["10sec", "30sec"])
