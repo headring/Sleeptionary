@@ -33,5 +33,5 @@
   - Web
     - It's done for users interface
     - User can see their data
-    ![page](index_imgae.png)
+    
   
