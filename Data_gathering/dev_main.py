@@ -64,7 +64,7 @@ print("Buttons initialized.")
 standard_time = time.time()
 
 started = True  # Sleep started
-starttime = '%04d-%02d-%02d %02d:%02d:%02d' % (t.tm_year, t.tm_mon, t.tm_mday, t.tm_hour, t.tm_min, t.tm_sec)
+starttime = '%04d-%02d-%02d %02d:%02d:%02d' % (standard_time.tm_year, standard_time.tm_mon, standard_time.tm_mday, standard_time.tm_hour, standard_time.tm_min, standard_time.tm_sec)
 ts = []  # Save temperatures
 got_avg = False  # if got average temperature
 while 1:
