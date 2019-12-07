@@ -27,7 +27,7 @@
     - The idea was to get users' environment sounds and analyze noises and snoring
     - However, we only had time to build sound module to analyze whater it is noise or not
   - Video
-    - Very Key module on this project, because it reads users' temperature and gives data to DB
+    - In this folder, it had files for cameras to reads users' temperature and gives data to DB
     - Used Sparkfun IR camera
     - should_do_for_cam.md is how to use this folder(Written in Korean, if needed, translate using google) 
   - Web
