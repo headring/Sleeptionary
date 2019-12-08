@@ -193,7 +193,7 @@ plt.show()
 plt.close()
 
 # 페이지에 필요한 데이터 저장
-recommend_TM_HD = c.execute('''SELECT avg(TM_avg), avg(HD_avg) FROM Sleeptionary WHERE tag = 1''')
+recommend_TM_HD = c.execute('''SELECT avg(TM_avg), avg(HD_avg) FROM Sleeptionary WHERE tag = 1''').fetchone()
 f = open("../Web/data.txt", 'w')
 f.write(recommend_TM_HD[0] + '\n')
 f.write(recommend_TM_HD[1] + '\n')
