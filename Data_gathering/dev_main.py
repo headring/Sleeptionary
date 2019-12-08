@@ -196,6 +196,9 @@ plt.close()
 # 페이지에 필요한 데이터 저장
 recommend_TM_HD = c.execute('''SELECT avg(TM_avg), avg(HD_avg) FROM Sleeptionary WHERE tag = 1''').fetchone()
 f = open("../Web/data.txt", 'w')
+for i in range(7):
+    t = time.localtime(time.time() - 86400 * (7 - i))
+    f.write("%04d/%02d/%02d\n" % (t.tm_year, t.tm_mon, t.tm_mday))
 f.write("%.2f\n" % recommend_TM_HD[0])
 f.write("%.2f\n" % recommend_TM_HD[1])
 
