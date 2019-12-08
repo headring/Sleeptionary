@@ -192,6 +192,9 @@ plt.savefig("../Web/images/overview.png")
 plt.show()
 plt.close()
 
+
+
+
 conn.close()
 GPIO.cleanup()
 
