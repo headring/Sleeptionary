@@ -4,22 +4,6 @@
         <title>Overview</title>
         <meta charset="utf-8">
         <link rel="stylesheet" href="./Web/style.css">
-    </head>
-    <body onload="readFile()">
-        <h1>ㅇㅇㅇ님의 수면 기록</h1>
-        <div id="grid">
-            <div id="graph">
-                <img src="https://github.com/emscb/Sleeptionary/blob/master/Web/images/overview.png?raw=true">
-            </div>
-            <div id="suitable">
-                <div>
-                    평균 온도 : <div id="temperature"></div>
-                </div>
-                <div>
-                    평균 습도 : <div id="humidity"></div>
-                </div>
-            </div>
-        </div>
         <script>
             function readFile() {
                 var client = new XMLHttpRequest();
@@ -34,5 +18,32 @@
                 client.send();
             }
         </script>
+    </head>
+    <body onload="readFile()">
+        <h1>ㅇㅇㅇ님의 수면 기록</h1>
+        <div id="grid">
+            <div class="record">
+                <ul>
+                    <li><a href="">어제</a></li>
+                    <li><a href="">이틀 전</a></li>
+                    <li><a href="">3일 전</a></li>
+                    <li><a href="">4일 전</a></li>
+                    <li><a href="">5일 전</a></li>
+                    <li><a href="">6일 전</a></li>
+                    <li><a href="">7일 전</a></li>
+                </ul>
+            </div>
+            <div id="graph">
+                <img src="https://github.com/emscb/Sleeptionary/blob/master/Web/images/overview.png?raw=true">
+            </div>
+            <div id="suitable">
+                <div id="tm">
+                    평균 온도 : <div id="temperature"></div>도
+                </div>
+                <div id="hd">
+                    평균 습도 : <div id="humidity"></div>%
+                </div>
+            </div>
+        </div>
     </body>
 </html>
