@@ -208,7 +208,7 @@ subprocess.call("git add %s" % db_path + " ../Web/images/overview.png" + " ../We
 subprocess.call("git commit -m 'Update DB, images'", shell=True)
 subprocess.call("git push", shell=True)
 
-# TODO 최적의 온습도, 조도 표시
+# TODO 최적의 온습도 표시
 # TODO 데이터 목록 인덱싱
 # TODO 일일 상세 페이지
 # TODO 스위치 끄는 장면 편집
