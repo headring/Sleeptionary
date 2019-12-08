@@ -12,11 +12,11 @@
                 <img src="./Web/images/overview.png">
             </div>
             <div id="suitable">
-                <div id="temperature">
-                    <div id='output'></div>
+                <div>
+                    평균 온도 : <div id="temperature"></div>
                 </div>
-                <div id="humidity">
-                    습도
+                <div>
+                    평균 습도 : <div id="humidity"></div>
                 </div>
             </div>
         </div>
@@ -27,7 +27,8 @@
                 client.onreadystatechange = function() {
                     if (client.responseText != '') {
                         var txt = client.responseText.split('\n');
-                        document.getElementById("output").innerHTML = txt;
+                        document.getElementById("temperature").innerHTML = txt[0];
+                        document.getElementById("humidity").innerHTML = txt[1];
                     }
                 }
                 client.send();
