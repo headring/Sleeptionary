@@ -11,13 +11,13 @@
                 client.onreadystatechange = function() {
                     if (client.responseText != '') {
                         var txt = client.responseText.split('\n');
-                        document.getElementById("1ago").innerHTML = txt[0];
-                        document.getElementById("2ago").innerHTML = txt[1];
-                        document.getElementById("3ago").innerHTML = txt[2];
+                        document.getElementById("1ago").innerHTML = txt[6];
+                        document.getElementById("2ago").innerHTML = txt[5];
+                        document.getElementById("3ago").innerHTML = txt[4];
                         document.getElementById("4ago").innerHTML = txt[3];
-                        document.getElementById("5ago").innerHTML = txt[4];
-                        document.getElementById("6ago").innerHTML = txt[5];
-                        document.getElementById("7ago").innerHTML = txt[6];
+                        document.getElementById("5ago").innerHTML = txt[2];
+                        document.getElementById("6ago").innerHTML = txt[1];
+                        document.getElementById("7ago").innerHTML = txt[0];
                         document.getElementById("temperature").innerHTML = txt[7];
                         document.getElementById("humidity").innerHTML = txt[8];
                     }
@@ -53,10 +53,10 @@
             </div>
             <div id="suitable">
                 <div id="tm">
-                    평균 온도 : <div id="temperature"></div>도
+                    평균 온도 : <span id="temperature"></span>도
                 </div>
                 <div id="hd">
-                    평균 습도 : <div id="humidity"></div>%
+                    평균 습도 : <span id="humidity"></span>%
                 </div>
             </div>
         </div>
