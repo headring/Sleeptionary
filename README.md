@@ -9,7 +9,7 @@
 - Team_project STSBS at Soongsill Univ. 19-2nd semester (2019년 2학기 숭실대 의생명시스템특론 팀프로젝트)
 - USED TOOLS AND LANGUAGE: Raspberry Pi 3 & Python3
 - IDEA: To improve sleeping environment and habit (아이디어: 수면 개선)
-- **Contributors: Kwon, Kim, Jang **(참여자: 권혁민, 김상현, 장인애)
+- **Contributors: Kwon, Kim, Jang**(참여자: 권혁민, 김상현, 장인애)
 
 ## Description
 
