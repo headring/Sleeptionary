@@ -13,6 +13,7 @@ h1 {
 #grid {
     display: grid;
     grid-template-columns: 150px 850px 1fr;
+    border-bottom: solid 1px gray;
 }
 body {
     margin: 0px;
