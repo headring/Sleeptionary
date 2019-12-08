@@ -158,8 +158,8 @@ print("avg_LX :", avg_LX)
 
 # 저장
 date = '%04d-%02d-%02d' % (t.tm_year, t.tm_mon, time.localtime(time.time() - 86400).tm_mday)
-db_insert([date, starttime, endtime, avg_TM_HD[0], avg_TM_HD[1],
-           avg_LX[0], tag], '''INSERT INTO Sleeptionary VALUES(?,?,?,?,?,?,?)''')
+db_insert([date, starttime, endtime, "%.2f" % avg_TM_HD[0], "%.2f" % avg_TM_HD[1],
+           "%.0f" % avg_LX[0], tag], '''INSERT INTO Sleeptionary VALUES(?,?,?,?,?,?,?)''')
 
 # 그래프 그리기
 y_data = []
@@ -196,8 +196,8 @@ plt.close()
 # 페이지에 필요한 데이터 저장
 recommend_TM_HD = c.execute('''SELECT avg(TM_avg), avg(HD_avg) FROM Sleeptionary WHERE tag = 1''').fetchone()
 f = open("../Web/data.txt", 'w')
-f.write(str(recommend_TM_HD[0]) + '\n')
-f.write(str(recommend_TM_HD[1]) + '\n')
+f.write("%.2f\n" % recommend_TM_HD[0])
+f.write("%.2f\n" % recommend_TM_HD[1])
 
 f.close()
 conn.close()
