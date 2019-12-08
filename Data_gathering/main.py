@@ -28,12 +28,25 @@ def tmhd():
 
 
 def lux():
-    # TODO 조도 측정 코드
-    lx = 0  # 조도값
+    count = 0
+
+    # Output on the pin for
+    GPIO.setup(pin_to_circuit, GPIO.OUT)
+    GPIO.output(pin_to_circuit, GPIO.LOW)
+    time.sleep(0.1)
+
+    # Change the pin back to input
+    GPIO.setup(pin_to_circuit, GPIO.IN)
+
+    # Count until the pin goes high
+    while GPIO.input(pin_to_circuit) == GPIO.LOW:
+        count += 1
+
+    # Convert to lux
+    lx = 1285.5 * exp(-0.009 * count)  # 조도값
     query = '''INSERT INTO lux(LX) VALUES(?)'''
 
     return [[lx], query]
-
 
 # Connect database
 db_path = "./test.db"
@@ -48,6 +61,11 @@ except sqlite3.OperationalError:
 sensor = Adafruit_DHT.DHT11
 pin = 4
 print("Thermometer initialized.")
+
+# Initialize lux sensor
+GPIO.setmode(GPIO.BOARD)
+pin_to_circuit = 8
+print("Photo sensor initialized.")
 
 # Initialize thermal camera
 camera = Adafruit_AMG88xx()

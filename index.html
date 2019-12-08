@@ -5,7 +5,7 @@
         <meta charset="utf-8">
         <link rel="stylesheet" href="./Web/style.css">
     </head>
-    <body>
+    <body onload="readFile()">
         <h1>ㅇㅇㅇ님의 수면 기록</h1>
         <div id="grid">
             <div id="graph">
@@ -13,12 +13,25 @@
             </div>
             <div id="suitable">
                 <div id="temperature">
-                    온도
+                    <div id='output'></div>
                 </div>
                 <div id="humidity">
                     습도
                 </div>
             </div>
         </div>
+        <script>
+            function readFile() {
+                var client = new XMLHttpRequest();
+                client.open('GET', './Web/data.txt');
+                client.onreadystatechange = function() {
+                    if (client.responseText != '') {
+                        var txt = client.responseText.split('\n');
+                        document.getElementById("output").innerHTML = txt;
+                    }
+                }
+                client.send();
+            }
+        </script>
     </body>
 </html>
