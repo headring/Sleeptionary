@@ -3,11 +3,11 @@
     <head>
         <title>Overview</title>
         <meta charset="utf-8">
-        <link rel="stylesheet" href="./Web/style.css">
+        <link rel="stylesheet" href="./style.css">
         <script>
             function readFile() {
                 var client = new XMLHttpRequest();
-                client.open('GET', './Web/data.txt');
+                client.open('GET', './data.txt');
                 client.onreadystatechange = function() {
                     if (client.responseText != '') {
                         var txt = client.responseText.split('\n');
@@ -39,25 +39,17 @@
         <div id="grid">
             <div class="record">
                 <ul>
-                    <li id="1ago"><a href="./Web/1ago.html"></a></li>
-                    <li id="2ago"><a href="./Web/2ago.html"></a></li>
-                    <li id="3ago"><a href="./Web/3ago.html"></a></li>
-                    <li id="4ago"><a href="./Web/4ago.html"></a></li>
-                    <li id="5ago"><a href="./Web/5ago.html"></a></li>
-                    <li id="6ago"><a href="./Web/6ago.html"></a></li>
-                    <li id="7ago"><a href="./Web/7ago.html"></a></li>
+                    <li id="1ago"><a href="./1ago.html"></a></li>
+                    <li id="2ago"><a href="./2ago.html"></a></li>
+                    <li id="3ago"><a href="./3ago.html"></a></li>
+                    <li id="4ago"><a href="./4ago.html"></a></li>
+                    <li id="5ago"><a href="./5ago.html"></a></li>
+                    <li id="6ago"><a href="./6ago.html"></a></li>
+                    <li id="7ago"><a href="./7ago.html"></a></li>
                 </ul>
             </div>
             <div id="graph">
-                <img src="https://github.com/emscb/Sleeptionary/blob/master/Web/images/overview.png?raw=true">
-            </div>
-            <div id="suitable">
-                <div id="tm">
-                    평균 온도 : <span id="temperature"></span>˚C
-                </div>
-                <div id="hd">
-                    평균 습도 : <span id="humidity"></span>%
-                </div>
+                <img src="">
             </div>
         </div>
     </body>
