@@ -63,6 +63,7 @@ except sqlite3.OperationalError:
 # Initialize DHT sensor
 sensor = Adafruit_DHT.DHT11
 pin = 4
+tmhd()  # Trash dummy values
 print("Thermometer initialized.")
 
 # Initialize lux sensor
@@ -97,7 +98,7 @@ while 1:
     b3 = GPIO.input(16)
     if not b1:
         tag = 1
-        print("Finish sleeping")
+        print("Good sleep.")
         break
     elif not b2:
         tag = 0
@@ -195,8 +196,8 @@ plt.close()
 # 페이지에 필요한 데이터 저장
 recommend_TM_HD = c.execute('''SELECT avg(TM_avg), avg(HD_avg) FROM Sleeptionary WHERE tag = 1''').fetchone()
 f = open("../Web/data.txt", 'w')
-f.write(recommend_TM_HD[0] + '\n')
-f.write(recommend_TM_HD[1] + '\n')
+f.write(str(recommend_TM_HD[0]) + '\n')
+f.write(str(recommend_TM_HD[1]) + '\n')
 
 f.close()
 conn.close()
