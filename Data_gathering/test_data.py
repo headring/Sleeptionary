@@ -26,5 +26,3 @@ while 1:
             hour = 0
     if hour * 60 + min >= h * 60 + m:
         break
-
-f.write('''insert into Sleeptionary values("2019-12-04", "2019-12-03 22:00:10", "2019-12-04 06:23:12", 23.5, 33.5, 15, 124, 1)''')
