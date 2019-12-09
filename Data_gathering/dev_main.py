@@ -244,6 +244,11 @@ for i in range(7):
     plt.title("Temperature while sleeping (%s)" % ("%04d/%02d/%02d" % (t.tm_year, t.tm_mon, t.tm_mday)))
     plt.savefig("../Web/images/%dago_tm.png" % (7 - i))
     plt.close()
+    plt.plot(range(len(sleeping_hd)), sleeping_hd, color="blue")
+    plt.xticks([])
+    plt.title("Humidity while sleeping (%s)" % ("%04d/%02d/%02d" % (t.tm_year, t.tm_mon, t.tm_mday)))
+    plt.savefig("../Web/images/%dago_hd.png" % (7 - i))
+    plt.close()
 
 recommend_TM_HD = c.execute('''SELECT avg(TM_avg), avg(HD_avg) FROM Sleeptionary WHERE tag = 1''').fetchone()
 f.write("%.0f\n" % recommend_TM_HD[0])

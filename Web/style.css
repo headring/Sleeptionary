@@ -14,14 +14,9 @@ h1 {
 }
 #grid {
     display: grid;
-    grid-template-columns: 150px 850px 0.5fr 0.5fr;
+    grid-template-columns: 150px 0.5fr 0.5fr;
     border-bottom: solid 1px gray;
 }
-#graph {
-    text-align: center;
-    background-color: beige;
-    padding: 20px;
-    vertical-align: middle;
-    height: 500px;
-    border-right: 1px solid gray;
+#tm, #hd {
+    
 }
