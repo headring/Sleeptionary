@@ -2,20 +2,21 @@ a {
     color: black;
     text-decoration: none;
 }
-body {
-    margin: 0px;
-}
 h1 {
     text-align: center;
     font-size: 40px;
     border-bottom: 1px solid gray;
     margin: 0px;
     padding: 20px;
+
 }
 #grid {
     display: grid;
     grid-template-columns: 150px 850px 0.5fr 0.5fr;
     border-bottom: solid 1px gray;
+}
+body {
+    margin: 0px;
 }
 #graph {
     text-align: center;
@@ -24,4 +25,21 @@ h1 {
     vertical-align: middle;
     height: 500px;
     border-right: 1px solid gray;
+}
+#tm, #hd {
+    text-align: center;
+    background-color: wheat;
+    padding: 10px;
+    border-right: 1px solid gray;
+}
+#grid .record {
+    border-right: 1px solid gray;
+    padding: 0px;
+}
+#grid ul {
+    padding: 20px;
+    padding-left: 33px;
+}
+#tm .recommend, #hd .recommend {
+    line-height: 50px;
 }

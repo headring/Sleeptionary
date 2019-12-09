@@ -1,6 +1,6 @@
 function readFile() {
     var client = new XMLHttpRequest();
-    client.open('GET', 'https://raw.githubusercontent.com/headring/Sleeptionary/master/Web/data.txt');
+    client.open('GET', "https://raw.githubusercontent.com/emscb/Sleeptionary/master/Web/data.txt");
     client.onreadystatechange = function() {
         if (client.responseText != '') {
             var txt = client.responseText.split('\n');
