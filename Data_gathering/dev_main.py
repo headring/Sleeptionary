@@ -197,7 +197,7 @@ for i in range(7):
 
 plt.bar(xtick, y_data, color='#7B68EE')
 plt.title("Last 7 days (h)")
-plt.yticks([1/6, 1/2], ["10min", "30min"])
+# plt.yticks([1/6, 1/2], ["10min", "30min"])
 plt.savefig("../Web/images/overview.png")
 plt.close()
 
