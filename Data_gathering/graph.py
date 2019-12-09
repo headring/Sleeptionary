@@ -35,13 +35,33 @@ for i in range(7):
         else:
             y_data.append(0)
 
-plt.bar(range(0, 7), y_data)
+plt.bar(xtick, y_data)
 plt.title("Last 7 days (h)")
-plt.xticks(range(0, 7), xtick)
-plt.yticks([5])
-# yticks(sort(y_data))
-plt.savefig("../Web/images/overview.png")
+plt.yticks([1/6, 1/2], ["10min", "30min"])
+# plt.savefig("../Web/images/overview.png")
 plt.show()
 plt.close()
 
-# TODO 수면 시간 미리 입력받아서 그 라인 쭉 그어주기
+xtick = []
+seven_days_tm = []
+seven_days_hd = []
+c2 = c.execute('''SELECT Date, TM_avg, HD_avg FROM Sleeptionary ORDER BY Date DESC LIMIT 7''')
+for s in c2:
+    xtick.append(list(s)[0][5:])
+    seven_days_tm.append(list(s)[1])
+    seven_days_hd.append(list(s)[2])
+
+# 최근 7일 간의 온도 그래프
+plt.plot(xtick[::-1], seven_days_tm[::-1], marker="o", color="red")
+plt.yticks([20, 23, 25, 28])
+# plt.grid(True)
+plt.title("Last 7 days' Average Temperature (Celsius)")
+plt.savefig("../Web/images/overview_tm.png")
+plt.show()
+plt.close()
+
+plt.plot(xtick[::-1], seven_days_hd[::-1], marker="o", color="blue")
+plt.title("Last 7 days' Average Humidity (%)")
+plt.savefig("../Web/images/overview_hd.png")
+plt.show()
+plt.close()

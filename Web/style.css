@@ -12,7 +12,7 @@ h1 {
 }
 #grid {
     display: grid;
-    grid-template-columns: 150px 850px 1fr;
+    grid-template-columns: 150px 850px 450px 450px 1fr;
     border-bottom: solid 1px gray;
 }
 body {
@@ -28,7 +28,7 @@ body {
 #tm, #hd {
     text-align: center;
     background-color: wheat;
-    height: 50%;
+    padding: 10px;
 }
 #grid .record {
     border-right: 1px solid gray;
@@ -37,4 +37,7 @@ body {
 #grid ul {
     padding: 20px;
     padding-left: 33px;
+}
+#tm .recommend {
+    line-height: 50px;
 }
