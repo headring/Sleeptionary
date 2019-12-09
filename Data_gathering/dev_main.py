@@ -221,4 +221,3 @@ subprocess.call("git commit -m 'Update DB, images'", shell=True)
 subprocess.call("git push", shell=True)
 
 # TODO 일일 상세 페이지
-# TODO 소음 데이터 쌓기
