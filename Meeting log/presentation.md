@@ -15,3 +15,13 @@
  - 한국인의 수면관심도와 관리기사 [링크](https://jhealthmedia.joins.com/article/article_view.asp?pno=20220#none)
  - 한국인 수면시간 최하위와 수면부족 문제점, 수면산업 기사 [링크](http://techm.kr/bbs/board.php?bo_table=article&wr_id=4010)
 
+
+
+사용자는 전원을 연결하고 그냥 자면 된다.
+
+자동으로 데이터 수집을 시작하고 자는 동안 계속 수집한다.
+
+일어나서 버튼을 누르면 데이터 기록을 중지하고 처리하여 마무리한다. + 배포
+
+웹페이지가 최신화된다.
+

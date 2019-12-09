@@ -1,4 +1,5 @@
-Problem
+### Problem
+
 - 잠이란?
 	- 왜 중요?
 - 우리나라 사람들은 과연 잘 자고 있을 까?
@@ -7,7 +8,8 @@ Problem
 	- 그래서 우리는 sleep-tech에 관심을 가지게 됨
 	- 지금 이 시장은 아직 blue ocean
 
-Difference
+### Difference
+
 - blue ocean이지만 시중에 나온 제품들이 존재
 	- 노이즈-마스킹 슬립버드: 소음 차단 및 수면에 도움되는 소리를 재생
 	- LG U+ 숙면등: AI로 방의 불을 조절 및 수면 유발 
@@ -19,14 +21,12 @@ Difference
 	1) 사용자는 우리의 제품을 그냥 붙이거나 놓기만 하면 됨
 	2) 지금까지 sleep-tech의 기술은 하나 씩만 있었다면 우리는 방안의 모든 것을 잠을 잘 수 있는 환경을 구축해주는 시스템
 
-Overview
-- 먼저 Video
-- Sound Module
-- DHT 11
-- Photosensor + Servo motor
-- Switch + Data 
+### Overview
 
-Future Prospects
+### Demo
+
+### Future Prospects
+
 - 스마트 밴드: 사진과 같이 자체적으로 많은 데이터를 저장 및 분석 가능
 	- 특히 구글핏과 연동이 되는 제품들이 많기에 구글핏 api를 통해서 다양한 정보를 더 불러올 수 있음
 	- 사용자의 deep sleep 시간, 심박수, 수면 감지 등등
