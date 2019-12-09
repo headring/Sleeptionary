@@ -78,12 +78,18 @@ GPIO.setup(18, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(16, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 print("Buttons initialized.")
 
+# Initialize mic
+GPIO.setmode(GPIO.BOARD)
+soundpin = 12
+GPIO.setup(soundpin, GPIO.IN)
+
 # Standard time
 standard_time = time.time()
 
 started = False  # Sleep started
 ts = []  # Save temperatures
 got_avg = False  # if got average temperature
+sound_detected = 0
 while 1:
     t = time.time()
 
@@ -140,6 +146,10 @@ while 1:
                 starttime = '%04d-%02d-%02d %02d:%02d:%02d' % (t.tm_year, t.tm_mon, t.tm_mday, t.tm_hour, t.tm_min, t.tm_sec)
                 started = True
 
+    # 상시
+    if GPIO.input(soundpin) == 1:
+        sound_detected += 1
+
 t = time.localtime()
 endtime = '%04d-%02d-%02d %02d:%02d:%02d' % (t.tm_year, t.tm_mon, t.tm_mday, t.tm_hour, t.tm_min, t.tm_sec)
 
@@ -150,7 +160,7 @@ avg_LX = c.execute('''SELECT avg(LX) FROM lux WHERE Timestamp BETWEEN "%s" and "
 # 저장
 date = '%04d-%02d-%02d' % (t.tm_year, t.tm_mon, time.localtime(time.time() - 86400).tm_mday)
 db_insert([date, starttime, endtime, "%.2f" % avg_TM_HD[0], "%.2f" % avg_TM_HD[1],
-           "%.2f" % avg_LX[0], tag], '''INSERT INTO Sleeptionary VALUES(?,?,?,?,?,?,?)''')
+           "%.2f" % avg_LX[0], sound_detected, tag], '''INSERT INTO Sleeptionary VALUES(?,?,?,?,?,?,?,?)''')
 
 # 그래프 그리기
 y_data = []
