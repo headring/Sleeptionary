@@ -12,7 +12,7 @@ h1 {
 }
 #grid {
     display: grid;
-    grid-template-columns: 150px 850px 1fr;
+    grid-template-columns: 150px 850px 0.5fr 0.5fr;
     border-bottom: solid 1px gray;
 }
 body {
@@ -24,11 +24,13 @@ body {
     padding: 20px;
     vertical-align: middle;
     height: 500px;
+    border-right: 1px solid gray;
 }
 #tm, #hd {
     text-align: center;
     background-color: wheat;
-    height: 50%;
+    padding: 10px;
+    border-right: 1px solid gray;
 }
 #grid .record {
     border-right: 1px solid gray;
@@ -37,4 +39,7 @@ body {
 #grid ul {
     padding: 20px;
     padding-left: 33px;
+}
+#tm .recommend, #hd .recommend {
+    line-height: 50px;
 }

@@ -1,6 +1,6 @@
 function readFile() {
     var client = new XMLHttpRequest();
-    client.open('GET', './data.txt');
+    client.open('GET', 'https://raw.githubusercontent.com/headring/Sleeptionary/master/Web/data.txt');
     client.onreadystatechange = function() {
         if (client.responseText != '') {
             var txt = client.responseText.split('\n');
@@ -14,7 +14,7 @@ function readFile() {
             document.getElementById("temperature").innerHTML = txt[7];
             document.getElementById("humidity").innerHTML = txt[8];
         }
-    }
+    };
     client.send();
 }
 function setDate() {
