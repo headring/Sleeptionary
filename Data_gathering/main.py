@@ -44,6 +44,7 @@ def lux():
 
     # Convert to lux
     lx = 1285.5 * exp(-0.009 * count)  # 조도값
+    print("%.0flux" % lx)
     query = '''INSERT INTO lux(LX) VALUES(?)'''
 
     return [[lx], query]
@@ -154,13 +155,15 @@ t = time.localtime()
 endtime = '%04d-%02d-%02d %02d:%02d:%02d' % (t.tm_year, t.tm_mon, t.tm_mday, t.tm_hour, t.tm_min, t.tm_sec)
 
 # 평균 온습도, 조도 계산
-avg_TM_HD = c.execute('''SELECT avg(TM), avg(HD) FROM tmhd WHERE Timestamp BETWEEN "%s" and "%s"''' % (starttime, endtime)).fetchone()
-avg_LX = c.execute('''SELECT avg(LX) FROM lux WHERE Timestamp BETWEEN "%s" and "%s"''' % (starttime, endtime)).fetchone()
+avg_TM_HD = c.execute('''SELECT avg(TM), avg(HD) FROM tmhd WHERE Timestamp BETWEEN "%s" and "%s"'''
+                      % (starttime, endtime)).fetchone()
+avg_LX = c.execute('''SELECT avg(LX) FROM lux WHERE Timestamp BETWEEN "%s" and "%s"'''
+                   % (starttime, endtime)).fetchone()
 
 # 저장
 date = '%04d-%02d-%02d' % (t.tm_year, t.tm_mon, time.localtime(time.time() - 86400).tm_mday)
 db_insert([date, starttime, endtime, "%.2f" % avg_TM_HD[0], "%.2f" % avg_TM_HD[1],
-           "%.2f" % avg_LX[0], sound_detected, tag], '''INSERT INTO Sleeptionary VALUES(?,?,?,?,?,?,?,?)''')
+           "%.0f" % avg_LX[0], sound_detected, tag], '''INSERT INTO Sleeptionary VALUES(?,?,?,?,?,?,?,?)''')
 
 # 그래프 그리기
 y_data = []
@@ -186,12 +189,10 @@ for i in range(7):
         else:
             y_data.append(0)
 
-plt.bar(range(0, 7), y_data)
+plt.bar(xtick, y_data)
 plt.title("Last 7 days (h)")
-plt.xticks(range(0, 7), xtick)
 plt.yticks(range(1, 11))
 plt.savefig("../Web/images/overview.png")
-plt.show()
 plt.close()
 
 # 페이지에 필요한 데이터 저장

@@ -159,10 +159,10 @@ t = time.localtime()
 endtime = '%04d-%02d-%02d %02d:%02d:%02d' % (t.tm_year, t.tm_mon, t.tm_mday, t.tm_hour, t.tm_min, t.tm_sec)
 
 # 평균 온습도, 조도 계산
-avg_TM_HD = c.execute('''SELECT avg(TM), avg(HD) FROM tmhd WHERE Timestamp BETWEEN "%s" and "%s"'''\
+avg_TM_HD = c.execute('''SELECT avg(TM), avg(HD) FROM tmhd WHERE Timestamp BETWEEN "%s" and "%s"'''
                       % (starttime, endtime)).fetchone()
 print("avg_TM_HD :", avg_TM_HD)
-avg_LX = c.execute('''SELECT avg(LX) FROM lux WHERE Timestamp BETWEEN "%s" and "%s"'''\
+avg_LX = c.execute('''SELECT avg(LX) FROM lux WHERE Timestamp BETWEEN "%s" and "%s"'''
                    % (starttime, endtime)).fetchone()
 print("avg_LX :", avg_LX)
 
@@ -250,6 +250,7 @@ for i in range(7):
     plt.savefig("../Web/images/%dago_hd.png" % (7 - i))
     plt.close()
 
+# 추천 온습도 기록
 recommend_TM_HD = c.execute('''SELECT avg(TM_avg), avg(HD_avg) FROM Sleeptionary WHERE tag = 1''').fetchone()
 f.write("%.0f\n" % recommend_TM_HD[0])
 f.write("%.0f\n" % recommend_TM_HD[1])
